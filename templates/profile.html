@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ profile.name }}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+
+<header class="hero">
+
+    <h1>User Profile Card</h1>
+
+    <p>Your profile has been created successfully.</p>
+
+</header>
+
+<main class="container">
+
+    <section class="preview-section">
+
+        <div class="profile-card">
+
+            <img
+                src="{{ profile.image_url }}"
+                alt="{{ profile.name }}"
+            >
+
+            <h3>{{ profile.name }}</h3>
+
+            <p class="occupation">
+                {{ profile.occupation }}
+            </p>
+
+            <p class="location">
+                {{ profile.location }}
+            </p>
+
+            <p class="email">
+                {{ profile.email }}
+            </p>
+
+            <div class="divider"></div>
+
+            <p class="bio">
+                {{ profile.bio }}
+            </p>
+
+            <div class="footer">
+
+                <span>
+                    Age : {{ profile.age }}
+                </span>
+
+                <span>
+
+                    Joined
+
+                    {{ profile.created_at.strftime('%d %b %Y') }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+<nav class="navbar">
+
+    <div class="logo">
+
+        User Profile Card Generator
+
+    </div>
+
+    <div>
+
+        <a href="{{ url_for('home') }}">Create New Profile</a>
+
+    </div>
+
+</nav>
+
+</html>

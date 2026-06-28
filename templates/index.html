@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>User Profile Card Generator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- ==========================
+         Navigation Bar
+    =========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            User Profile Card Generator
+        </div>
+
+        <div>
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- ==========================
+         Flash Messages
+    =========================== -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+    <div class="flash-container">
+
+        {% for category, message in messages %}
+
+        <div class="flash {{ category }}">
+
+            {{ message }}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% endif %}
+
+    {% endwith %}
+
+    <!-- ==========================
+         Hero Section
+    =========================== -->
+
+    <header class="hero">
+
+        <h1>User Profile Card Generator</h1>
+
+        <p>
+            Create beautiful profile cards by entering your information.
+        </p>
+
+    </header>
+
+    <!-- ==========================
+         Main Content
+    =========================== -->
+
+    <main class="container">
+
+        <!-- ==========================
+             Form Section
+        =========================== -->
+
+        <section class="form-section">
+
+            <h2>Create Profile</h2>
+
+            <form id="profileForm"
+                  action="{{ url_for('create_profile') }}"
+                  method="POST">
+
+                <div class="form-group">
+
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        minlength="3"
+                        maxlength="50"
+                        placeholder="Enter your full name"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="age">Age</label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        min="1"
+                        max="100"
+                        placeholder="Enter your age"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="occupation">Occupation</label>
+
+                    <input
+                        type="text"
+                        id="occupation"
+                        name="occupation"
+                        maxlength="50"
+                        placeholder="Software Developer"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="location">Location</label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        maxlength="50"
+                        placeholder="Ranchi, India"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@email.com"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="image_url">Profile Image URL</label>
+
+                    <input
+                        type="url"
+                        id="image_url"
+                        name="image_url"
+                        placeholder="https://example.com/image.jpg"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="bio">
+
+                        Bio
+
+                        <span id="charCount">
+                            0 / 200
+                        </span>
+
+                    </label>
+
+                    <textarea
+                        id="bio"
+                        name="bio"
+                        rows="5"
+                        maxlength="200"
+                        placeholder="Tell us something about yourself..."
+                        required></textarea>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="submit-btn">
+
+                    Generate Profile
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- ==========================
+             Live Preview
+        =========================== -->
+
+        <section class="preview-section">
+
+            <h2>Profile Preview</h2>
+
+            <div class="profile-card">
+
+                <img
+                    src="https://ui-avatars.com/api/?name=User"
+                    alt="Profile Image"
+                    id="previewImage">
+
+                <h3 id="previewName">
+
+                    Your Name
+
+                </h3>
+
+                <p
+                    class="occupation"
+                    id="previewOccupation">
+
+                    Occupation
+
+                </p>
+
+                <p
+                    class="location"
+                    id="previewLocation">
+
+                    Location
+
+                </p>
+
+                <p
+                    class="email"
+                    id="previewEmail">
+
+                    example@email.com
+
+                </p>
+
+                <div class="divider"></div>
+
+                <p
+                    class="bio"
+                    id="previewBio">
+
+                    Your bio will appear here after entering the details.
+
+                </p>
+
+                <div class="footer">
+
+                    <span id="previewAge">
+
+                        Age: --
+
+                    </span>
+
+                    <span>
+
+                        Joined Today
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
