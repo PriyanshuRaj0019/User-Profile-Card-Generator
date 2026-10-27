@@ -243,3 +243,4 @@ pip install -r requirements.txt
 ## License
 
 This project is developed for educational and internship portfolio purposes.
+<!-- Project review & docs log: 2026-10-27 [1/5] -->
